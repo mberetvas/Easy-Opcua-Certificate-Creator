@@ -15,25 +15,29 @@ A Python tool that simplifies generating OPC UA certificates and Certificate Sig
 
 ## Installation
 
+
 ### Using UV (Recommended)
 
-```bash
-# Clone the repository
-git clone https://github.com/mberetvas/Easy-Opcua-Certificate-Creator.git
-cd Easy-Opcua-Certificate-Creator
+This project is designed to be installed as a CLI tool using [uv](https://astral.sh/uv/), a modern Python package and project manager from Astral. If you don’t have uv installed, follow the instructions at [docs.astral.sh/uv](https://docs.astral.sh/uv/guides/install-python/) to install it.
 
-# Install using UV
-uv sync
+Once uv is installed, you can install this CLI application directly from GitHub with:
+
+```powershell
+uv tool install opcua-cert --from https://github.com/mberetvas/Easy-Opcua-Certificate-Creator.git
 ```
 
-### Using pip
+This will make the `opcua-cert` command available globally on your system, so you can use it from any terminal.
 
-```bash
-# Clone the repository
+> **Note:** uv will automatically manage Python versions and dependencies for you. No need to manually set up a virtual environment or install Python.
+
+
+### Using pip (Alternative)
+
+If you prefer not to use uv, you can still install the project manually:
+
+```powershell
 git clone https://github.com/mberetvas/Easy-Opcua-Certificate-Creator.git
 cd Easy-Opcua-Certificate-Creator
-
-# Install dependencies
 pip install -r requirements.txt
 ```
 
