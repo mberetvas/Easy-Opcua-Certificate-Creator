@@ -10,5 +10,5 @@ dependencies = [
 ]
 
 [project.scripts]
-opcua-cert = "src.opcua_certificate_tui:main"
+opcua-cert = "opcua_cert.opcua_cert_cli:main"
 

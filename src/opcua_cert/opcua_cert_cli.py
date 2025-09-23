@@ -41,6 +41,26 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+def main():
+    try:
+        args = parse_arguments()
+
+        if args.verbose:
+            logging.getLogger().setLevel(logging.DEBUG)
+
+        wizard = OPCUAWizard()
+
+        if args.non_interactive:
+            wizard.run_non_interactive(args)
+        else:
+            wizard.run()
+
+    except KeyboardInterrupt:
+        print("\nOperation cancelled by user")
+        sys.exit(0)
+    except Exception as e:
+        logger.error(f"Error: {e}")
+        sys.exit(1)
 
 class FileManager:
     def __init__(self, base: Path):
@@ -259,10 +279,10 @@ class CertificateManager:
 
 def build_san_list(
     hostname: str,
-    ip: str,
+    ip: Optional[str],
     app_uri: str,
-    extra_dns: List[str] = None,
-    extra_ip: List[str] = None,
+    extra_dns: Optional[List[str]] = None,
+    extra_ip: Optional[List[str]] = None,
 ) -> List[x509.GeneralName]:
     san_entries: List[x509.GeneralName] = []
     if hostname:
@@ -294,7 +314,7 @@ class OPCUAWizard:
         self.cert_mgr = CertificateManager()
 
     @staticmethod
-    def prompt(q: str, default: str = None, completer=None) -> str:
+    def prompt(q: str, default: Optional[str] = None, completer=None) -> str:
         text = f"{q} " + (f"[{default}] " if default else "")
         ans = prompt(text, completer=completer)
         return ans.strip() if ans.strip() else (default or "")
@@ -393,7 +413,7 @@ class OPCUAWizard:
         hostname = self.prompt("Hostname", default=host_name)
         ip_default = ",".join(ip_candidates)
         extra_ip_raw = self.prompt(
-            f"Detected IPs (comma separated, edit if needed)", default=ip_default
+            "Detected IPs (comma separated, edit if needed)", default=ip_default
         )
         extra_ip = [ip.strip() for ip in extra_ip_raw.split(",") if ip.strip()]
 
@@ -475,7 +495,7 @@ class OPCUAWizard:
             logger.info(
                 f"Certificate generated and copied to trusted store: {trusted_copy}"
             )
-            print(f"✓ Self-signed certificate created successfully")
+            print("✓ Self-signed certificate created successfully")
             print(
                 f"✓ Certificate files: {cert_pem}"
                 + (f", {cert_der}" if export_der else "")
@@ -484,7 +504,7 @@ class OPCUAWizard:
             csr = self.cert_mgr.create_csr(key, subject, san_list)
             self.file_mgr.save_csr(csr, csr_pem, csr_der if export_der else None)
             logger.info("CSR generated successfully")
-            print(f"✓ Certificate Signing Request created successfully")
+            print("✓ Certificate Signing Request created successfully")
             print(f"✓ CSR files: {csr_pem}" + (f", {csr_der}" if export_der else ""))
 
         print("\n=== Next Steps ===")
