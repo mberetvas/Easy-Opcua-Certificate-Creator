@@ -8,3 +8,7 @@ dependencies = [
     "cryptography>=46.0.1",
     "prompt-toolkit>=3.0.52",
 ]
+
+[project.scripts]
+opcua-cert = "src.opcua_certificate_tui:main"
+
