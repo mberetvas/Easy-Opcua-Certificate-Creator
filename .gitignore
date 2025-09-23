@@ -231,3 +231,6 @@ __marimo__/
 **/build/
 **/dist/
 **/__pycache__/
+
+#github
+.github/
