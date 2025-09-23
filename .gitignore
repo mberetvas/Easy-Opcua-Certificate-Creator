@@ -228,8 +228,6 @@ __marimo__/
 
 # opcua related
 **/opcua_cert.egg-info/
-**/build/
-**/dist/
 **/__pycache__/
 
 #github
