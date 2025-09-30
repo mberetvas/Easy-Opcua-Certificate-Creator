@@ -54,7 +54,7 @@ pip install -r requirements.txt
 Run the tool interactively for guided certificate creation:
 
 ```bash
-python src/opcua_certificate_tui.py
+opcua-cert
 ```
 
 The wizard will guide you through:
@@ -71,7 +71,7 @@ For automation or CI/CD pipelines:
 
 ```bash
 # Basic self-signed certificate
-python src/opcua_certificate_tui.py --non-interactive \
+opcua-cert  --non-interactive \
   --common-name "MyPLCClient" \
   --primary-ip "192.168.1.100" \
   --organization "MyCompany"
