@@ -54,7 +54,7 @@ pip install -r requirements.txt
 Run the tool interactively for guided certificate creation:
 
 ```bash
-python src/opcua_certificate_tui.py
+opcua-cert
 ```
 
 The wizard will guide you through:
@@ -71,13 +71,13 @@ For automation or CI/CD pipelines:
 
 ```bash
 # Basic self-signed certificate
-python src/opcua_certificate_tui.py --non-interactive \
+opcua-cert  --non-interactive \
   --common-name "MyPLCClient" \
   --primary-ip "192.168.1.100" \
   --organization "MyCompany"
 
 # Certificate Signing Request with custom parameters
-python src/opcua_certificate_tui.py --non-interactive \
+opcua-cert --non-interactive \
   --mode csr \
   --key-size 4096 \
   --common-name "ProductionLine01" \
@@ -128,7 +128,7 @@ opcua_certs/
 ### Basic PLC Connection Certificate
 
 ```bash
-python src/opcua_certificate_tui.py --non-interactive \
+opcua-cert --non-interactive \
   --common-name "HMI-Station-01" \
   --primary-ip "192.168.100.10" \
   --organization "Manufacturing Corp" \
@@ -138,7 +138,7 @@ python src/opcua_certificate_tui.py --non-interactive \
 ### High-Security Certificate with Multiple SANs
 
 ```bash
-python src/opcua_certificate_tui.py --non-interactive \
+opcua-cert --non-interactive \
   --key-size 4096 \
   --common-name "CriticalSystem" \
   --primary-ip "10.1.1.100" \
@@ -152,7 +152,7 @@ python src/opcua_certificate_tui.py --non-interactive \
 ### CSR for External CA Signing
 
 ```bash
-python src/opcua_certificate_tui.py --non-interactive \
+opcua-cert --non-interactive \
   --mode csr \
   --common-name "SCADA-Gateway" \
   --organization "Industrial Solutions Inc" \
