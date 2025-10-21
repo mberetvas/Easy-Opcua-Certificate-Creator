@@ -1,6 +1,6 @@
 [project]
 name = "opcua-cert"
-version = "0.1.2"
+version = "0.1.3"
 description = "This is a automated certificate generation tool for OPC UA applications."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-opcua-cert = "__main__.py:main"
+opcua-cert = "opcua_cert.__main__.py:main"
 
 [build-system]
 requires = ["uv_build >= 0.9.2, <0.10.0"]
