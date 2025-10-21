@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-opcua-cert = "opcua_cert.__main__.py:main"
+opcua-cert = "opcua_cert.__main__:main"
 
 [build-system]
 requires = ["uv_build >= 0.9.2, <0.10.0"]
